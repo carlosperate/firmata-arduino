@@ -764,6 +764,20 @@ writePort(port, value, bitmask):  Write an 8 bit port.
 #define PIN_TO_SERVO(p)         (p)
 #define DEFAULT_PWM_RESOLUTION  10
 
+// BBC micro:bit
+#elif defined(ARDUINO_BBC_MICROBIT)
+#define TOTAL_ANALOG_PINS       6
+#define TOTAL_PINS              21 // 6 + 11
+#define IS_PIN_DIGITAL(p)       (((p) >= 0 && (p) <= 16) || (p) == 19 || (p) == 20)
+#define IS_PIN_ANALOG(p)        (((p) >= 0 && (p) <= 4) || (p) == 10)
+#define IS_PIN_PWM(p)           ((p) == 0 || (p) == 1 || (p) == 2)
+#define IS_PIN_SERVO(p)         (IS_PIN_DIGITAL(p) && (p) < MAX_SERVOS)
+#define IS_PIN_I2C(p)           ((p) == 19 || (p) == 20)
+#define IS_PIN_SPI(p)           ((p) == 13 || (p) == 14 || (p) == 15)
+#define PIN_TO_DIGITAL(p)       (p)
+#define PIN_TO_ANALOG(p)        (p)
+#define PIN_TO_PWM(p)           (p)
+#define PIN_TO_SERVO(p)         (p)
 
 // anything else
 #else
